@@ -116,7 +116,7 @@ var BuildInTypes = map[string][]string{
 	"positiveInteger":    {"int", "number", "int", "Integer", "u32"},
 	"short":              {"int16", "number", "int", "Integer", "i16"},
 	"string":             {"string", "string", "char", "String", "String"},
-	"time":               {"time.Time", "string", "char", "String", "String"},
+	"time":               {"string", "string", "char", "String", "String"},
 	"token":              {"string", "string", "char", "String", "String"},
 	"unsignedByte":       {"byte", "any", "char", "Byte", "u8"},
 	"unsignedInt":        {"uint32", "number", "unsigned int", "Integer", "u32"},
