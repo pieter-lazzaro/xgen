@@ -215,6 +215,7 @@ func (gen *CodeGenerator) GoComplexType(v *ComplexType) {
 
 		for _, element := range v.Elements {
 			var plural string
+			var optional string
 			if element.Plural {
 				plural = "[]"
 			}
@@ -222,7 +223,10 @@ func (gen *CodeGenerator) GoComplexType(v *ComplexType) {
 			if fieldType == "time.Time" {
 				gen.ImportTime = true
 			}
-			content += fmt.Sprintf("\t%s\t%s%s\t`xml:\"%s\"`\n", genGoFieldName(element.Name, false), plural, fieldType, element.Name)
+			if element.Optional {
+				optional = `,omitempty`
+			}
+			content += fmt.Sprintf("\t%s\t%s%s\t`xml:\"%s%s\"`\n", genGoFieldName(element.Name, false), plural, fieldType, element.Name, optional)
 		}
 		if len(v.Base) > 0 {
 			// If the type is a built-in type, generate a Value field as chardata.

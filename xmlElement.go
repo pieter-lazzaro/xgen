@@ -43,6 +43,13 @@ func (opt *Options) OnElement(ele xml.StartElement, protoTree []interface{}) (er
 				e.Plural, err = true, nil
 			}
 		}
+
+		if attr.Name.Local == "minOccurs" {
+			if attr.Value == "0" {
+				e.Optional, err = true, nil
+			}
+		}
+
 		if attr.Name.Local == "unbounded" {
 			if attr.Value != "0" {
 				e.Plural = true
